@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DThon</title>
+    <link href="index.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+
+    <header>
+        <img class="logo-icon" src="https://deepthought.education/assets/images/logo/logo.svg">
+        <img class="home-icon" src="Images/Group 1097.png">
+        <img class="service-icon" src="Images/Group 1100.png">
+        <img class="notification-icon" src="Images/Vector.png">
+        <img class="profile-icon" src="Images/Ellipse 53.png">
+        <img class="dot1" src="Images/Ellipse 1.png">
+        <img class="dot2" src="Images/Ellipse 1.png">
+        <img class="dot3" src="Images/Ellipse 1.png">
+    </header>
+
+
+    <!-- Main -->
+
+        <!-- Left span -->
+        <span class="left-section" id="sidebar">
+            <span class="left-section-upper">
+                
+            </span>
+            <button class="expand this-button toggle-sidebar" onclick="toggleSidebar()"><img src="Images/Expand.png"></button>
+            <span class="left-section-lower">
+                <span class="counter"></span>
+                <p class="counter-count">1</p>
+            </span>
+        </span>
+
+        <!-- Middle span -->    
+        <span class="middle-section">
+            <span class="middle-top" >
+                <h1>Technical Support Team</h1>
+                <button class="submit-task" type="submit">Submit Task</button>
+            </span>
+            <span class="middle-middle">
+                <h1>Explore the world of management</h1>
+                <h2>As a project manager, you play an important reole in leading a project through initiation, planning, execution, monitoring, controlling and completion. How? Do you want to manage each and every step of your life?</h4>
+            </span>
+            <div class="main-content" id="main-content">
+                <!-- Dynamic content  -->
+            </div>
+        </span>
+
+        <!-- Right span -->
+        <span class="right-section">
+            <span class="right-section-upper">
+                <span class="right-section-upper-left">
+                    <img class="cross" src="Images/Icon.png">
+                    <h1 style="color: white;position:absolute;top: 8px;left: 85px;">NOTEBOARD</h1>
+                </span>
+            </span>
+            <span class="right-section-lower">
+                <img class="question" src="Images/question-mark.png">
+                <img class="meeting" src="Images/meeting.png">
+                <img class="schedule" src="Images/schedule.png">
+            </span>
+        </span>
+        <script>
+            // Sample JSON data
+            const data = {
+                "title": "Technical Project Management",
+                "description": "<p>Have you ever thought, Pareto's Law can be applied to cooking? Your thinking starts when you start thinking beyond your thinking.</p>\n<p>Let's prepare Sandwiches, we will use Pareto’s Law. That’s an 80-20 approach.<br>80% of the time in researching, and planning and 20% of the time in implementation.</p>\n<p>So for preparing sandwiches, we need vegetables, bread, cheese, butter and much more. So initially we collect all the stuff and then chop the vegetables, grate the cheese, and make a mash of potato. So this all comes in 80% and then comes 20% where we will roast the bread, spread the sauce, place the mash put some cheese, and heat it for a while and our sandwich is ready.</p>\n<p>Similarly while creating any functionality 80% of the time is spent on consequences that might appear, some parameters we have to take care of, the scope of the variable, and some dependent functions, and then 20% comes from implementation.</p>\n<p>Let's start thinking together, and search for how you can get the essence of project management.</p>",
+                "tasks": [
+                    {
+                        "task_title": "Explore the world of management",
+                        "task_description": "As a project manager, you play an important role in leading a project through initiation, planning, execution, monitoring, controlling and completion. How? Do you want to manage each and every step of your life?",
+                        "assets": [
+                            {
+                                "asset_title": "Technical Project Management",
+                                "asset_description": "Story of Alignment, Scope of Agility, Specific Accountable Staggering Approach.",
+                                "asset_content": "https://www.youtube.com/embed/TiMRwri1xJ8",
+                                "asset_type": "video"
+                            },
+                            {
+                                "asset_title": "Threadbuild",
+                                "asset_description": "Watch the video and thread build, and jot out key threads while watching that video.",
+                                "asset_type": "threadbuilder"
+                            },
+                            {
+                                "asset_title": "Structure your pointers",
+                                "asset_description": "Write a 400-500 word article from your thread. Publish your understanding and showcase your learning to the world.",
+                                "asset_type": "article"
+                            },
+                            {
+                                "asset_title": "4SA Method",
+                                "asset_description": "To explore more, read more.",
+                                "asset_content": "https://dtthon.deepthought.education/sharer?id=01aa3cff-db8e-8d9d-afc0-1671715937878",
+                                "asset_type": "article"
+                            }
+                        ]
+                    }
+                ]
+            };
+    
+            // Function to create HTML content dynamically
+            function renderContent(data) {
+                const mainContent = document.getElementById('main-content');
+                
+                // Title and Description
+                const courseInfo = document.createElement('div');
+                courseInfo.classList.add('card');
+                courseInfo.innerHTML = `<h2>${data.title}</h2>${data.description}`;
+                mainContent.appendChild(courseInfo);
+                
+                // Tasks and Assets
+                data.tasks.forEach(task => {
+                    task.assets.forEach(asset => {
+                        const assetCard = document.createElement('div');
+                        assetCard.classList.add('card');
+                        assetCard.innerHTML = `<h2>${asset.asset_title}</h2><p>${asset.asset_description}</p>`;
+                        
+                        // Check for video content
+                        if (asset.asset_type === 'video') {
+                            assetCard.innerHTML += `<iframe src="${asset.asset_content}" frameborder="0" allowfullscreen></iframe>`;
+                        }
+    
+                        mainContent.appendChild(assetCard);
+                    });
+                });
+            }
+    
+            // Call the function to render content
+            renderContent(data);
+
+            function toggleSidebar() {
+                const sidebar = document.querySelector('.left-section'); // Use the correct class or ID
+                sidebar.classList.toggle('hide');
+
+                const leftUpper = document.querySelector('.left-section-upper');
+                
+                leftUpper.classList.toggle('left-section-upper');
+                leftUpper.classList.toggle('gone');
+                leftUpper.classList.toggle('left-section-upper-toggle');
+                
+                
+
+                const buttonExpand = document.querySelector('.this-button');
+                buttonExpand.classList.toggle('expand');
+                buttonExpand.classList.toggle('shrink');
+                
+
+                const counter = document.querySelector('.counter');
+                ['gone'].forEach(cls => {
+                    counter.classList.toggle(cls)
+                })
+
+                const counterCount = document.querySelector('.counter-count');
+                counterCount.classList.toggle('gone')
+
+            }
+        </script>
+</body>
+</html>
